@@ -1,0 +1,2 @@
+D:/hawy_driver/android/app/.cxx/Debug/5ju4q350/arm64-v8a/CMakeFiles/edit_cache.dir
+D:/hawy_driver/android/app/.cxx/Debug/5ju4q350/arm64-v8a/CMakeFiles/rebuild_cache.dir
