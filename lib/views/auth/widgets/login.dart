@@ -53,9 +53,10 @@ class _LoginState extends State<Login> {
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return "${langLocal.langLocal['requiredField']!['${val.languagebox.get("language")}']}";
-                  } else if (value.length != 11) {
-                    return "${langLocal.langLocal['phoneValidation']!['${val.languagebox.get("language")}']}";
                   }
+                  // else if (value.length != 11) {
+                  //   return "${langLocal.langLocal['phoneValidation']!['${val.languagebox.get("language")}']}";
+                  // }
                   return null;
                 },
               ),

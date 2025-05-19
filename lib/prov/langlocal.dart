@@ -316,11 +316,11 @@ class LangLocal {
       "en": "Delivered orders",
       "ar": "طلبات تم توصيلها",
     },
-    "returnedOrders": {
+    "rejectedOrders": {
       "en": "Returned orders",
       "ar": "طلبات تم ارجعها",
     },
-    "rejectedOrders": {
+    "returnedOrders": {
       "en": "Rejected orders",
       "ar": "الطلبات الراجعة",
     },
@@ -379,6 +379,9 @@ class LangLocal {
     "start": {"en": "Start", "ar": "ابدء"},
     "map": {"en": "go to map", "ar": "الذهاب للخريطة"},
     "numorder": {"en": "Number Order", "ar": "رقم الطلب"},
+    "withdrawalrequest": {"en": "withdrawal request", "ar": " طلب سحب "},
+    "Withdrawalrejection": {"en": "Withdrawal rejection", "ar": "رفض السحب"},
+    "withdrawalacceptance": {"en": "Withdrawal acceptance", "ar": "قبول السحب"},
   };
 
   String getText(String key, String localeCode) {

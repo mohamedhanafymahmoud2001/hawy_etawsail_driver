@@ -262,7 +262,7 @@ class MainViewState extends State<MainView> {
             height: AppSizes.blockSizeHorizontal * 18,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
-              color: colorsApp.colorgreen1,
+              color: colorsApp.colorblackApp,
               borderRadius: BorderRadius.circular(30),
             ),
             child: Stack(

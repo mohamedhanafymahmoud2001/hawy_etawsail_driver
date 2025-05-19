@@ -34,22 +34,22 @@ class ItemWallet extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Text(
-                      "${langLocal.langLocal['transaction_type_label']!['${val.languagebox.get("language")}']}",
-
-                      style: AppTextStyles.style12W700(context),
-                    ),
-                    Text(
+                Text(
+                  "${langLocal.langLocal['transaction_type_label']!['${val.languagebox.get("language")}']}",
+                  style: AppTextStyles.style12W700(context),
+                ),
+                Expanded(
+                  child: Container(
+                    child: Text(
                       type,
                       style: AppTextStyles.style12W700(context).copyWith(
                         color: color,
                       ),
                     ),
-                  ],
+                  ),
                 ),
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 4),
@@ -85,7 +85,6 @@ class ItemWallet extends StatelessWidget {
               children: [
                 Text(
                   "${langLocal.langLocal['amount_label']!['${val.languagebox.get("language")}']}",
-
                   style: AppTextStyles.style12W500(context)
                       .copyWith(color: AppColors.greenDark),
                 ),

@@ -61,17 +61,79 @@ class MyOrderDetails extends StatelessWidget {
                         child: Column(
                           children: [
                             SizedBox(height: 12),
-                            Text(
-                              "${val.orderDetails['data']['order']['product_name']}",
-                              style:
-                                  AppTextStyles.style16W600(context).copyWith(
-                                color: AppColors.greenWhite,
-                              ),
-                            ),
-                            ImageView(
-                              image:
-                                  "${val.api.ip}/${val.orderDetails['data']['order']['image']}",
-                            ),
+                            // SizedBox(height: 20),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.of(context).pushNamed("MapDetails");
+                                },
+                                child: Stack(
+                                  children: [
+                                    Container(
+                                        padding: EdgeInsets.all(20),
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          color: Colors.grey.withOpacity(0.2),
+                                        ),
+                                        child: Image.asset(
+                                            "assets/images/map.webp")),
+                                    Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        SizedBox(
+                                          height: 90,
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.pin_drop_outlined,
+                                              color: Colors.white,
+                                            ),
+                                            SizedBox(
+                                              width: 120,
+                                            ),
+                                            Icon(
+                                              Icons.pin_drop_outlined,
+                                              color: Colors.white,
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 60,
+                                        ),
+                                        Container(
+                                          padding: EdgeInsets.all(20),
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: Colors.grey.withOpacity(0.6),
+                                          ),
+                                          child: Text(
+                                            "${langLocal.langLocal['map']!['${val.languagebox.get("language")}']}",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                )),
+                            // Text(
+                            //   "${val.orderDetails['data']['order']['product_name']}",
+                            //   style:
+                            //       AppTextStyles.style16W600(context).copyWith(
+                            //     color: AppColors.greenWhite,
+                            //   ),
+                            // ),
+                            // ImageView(
+                            //   image:
+                            //       "${val.api.ip}/${val.orderDetails['data']['order']['image']}",
+                            // ),
                             SizedBox(height: 8),
                             MyOrderDetailsItem(
                               title:
@@ -80,31 +142,31 @@ class MyOrderDetails extends StatelessWidget {
                                   ['orderNumber'],
                               isWhite: false,
                             ),
-                            Container(
-                              width: double.infinity,
-                              padding: const EdgeInsets.all(16.0),
-                              color: Colors.white,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "${langLocal.langLocal['productDescription']!['${val.languagebox.get("language")}']}",
-                                    style: AppTextStyles.style12W500(context)
-                                        .copyWith(
-                                      fontFamily: "Noto Kufi Arabic",
-                                      color: AppColors.greyDarker,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 16,
-                                  ),
-                                  Text(
-                                      "${val.orderDetails['data']['order']['description']}",
-                                      style:
-                                          AppTextStyles.style10W500(context)),
-                                ],
-                              ),
-                            ),
+                            // Container(
+                            //   width: double.infinity,
+                            //   padding: const EdgeInsets.all(16.0),
+                            //   color: Colors.white,
+                            //   child: Column(
+                            //     crossAxisAlignment: CrossAxisAlignment.start,
+                            //     children: [
+                            //       Text(
+                            //         "${langLocal.langLocal['productDescription']!['${val.languagebox.get("language")}']}",
+                            //         style: AppTextStyles.style12W500(context)
+                            //             .copyWith(
+                            //           fontFamily: "Noto Kufi Arabic",
+                            //           color: AppColors.greyDarker,
+                            //         ),
+                            //       ),
+                            //       SizedBox(
+                            //         height: 16,
+                            //       ),
+                            //       Text(
+                            //           "${val.orderDetails['data']['order']['description']}",
+                            //           style:
+                            //               AppTextStyles.style10W500(context)),
+                            //     ],
+                            //   ),
+                            // ),
                             MyOrderDetailsItem(
                               title:
                                   "${langLocal.langLocal['packaging']!['${val.languagebox.get("language")}']}",
@@ -246,68 +308,7 @@ class MyOrderDetails extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            SizedBox(height: 20),
-                            InkWell(
-                                onTap: () {
-                                  Navigator.of(context).pushNamed("MapDetails");
-                                },
-                                child: Stack(
-                                  children: [
-                                    Container(
-                                        padding: EdgeInsets.all(20),
-                                        decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(20),
-                                          color: Colors.grey.withOpacity(0.2),
-                                        ),
-                                        child: Image.asset(
-                                            "assets/images/map.webp")),
-                                    Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                          height: 90,
-                                        ),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Icon(
-                                              Icons.pin_drop_outlined,
-                                              color: Colors.white,
-                                            ),
-                                            SizedBox(
-                                              width: 120,
-                                            ),
-                                            Icon(
-                                              Icons.pin_drop_outlined,
-                                              color: Colors.white,
-                                            ),
-                                          ],
-                                        ),
-                                        SizedBox(
-                                          height: 60,
-                                        ),
-                                        Container(
-                                          padding: EdgeInsets.all(20),
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(20),
-                                            color: Colors.grey.withOpacity(0.6),
-                                          ),
-                                          child: Text(
-                                            "${langLocal.langLocal['map']!['${val.languagebox.get("language")}']}",
-                                            style:
-                                                TextStyle(color: Colors.white),
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                )),
+
                             SizedBox(height: 20),
                             Visibility(
                               visible: confirmedOrders,

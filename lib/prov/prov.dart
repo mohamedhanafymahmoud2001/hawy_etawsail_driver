@@ -11,6 +11,8 @@ import 'package:geolocator/geolocator.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
+import 'package:image_picker/image_picker.dart';
+
 class Control extends ChangeNotifier {
   Api api = new Api();
   var fbm = FirebaseMessaging.instance;
@@ -747,5 +749,24 @@ class Control extends ChangeNotifier {
     } else {
       print('error');
     }
+  }
+
+  //examole
+
+  final ImagePicker picker = ImagePicker();
+  Future<void> pickImage(ImageSource source, String type) async {
+    final pickedFile = await picker.pickImage(source: source);
+    if (pickedFile != null) {
+      if (type == "profile") {
+        user_image = File(pickedFile.path);
+      } else if (type == "card") {
+        card_image = File(pickedFile.path);
+      } else if (type == "license") {
+        license_image = File(pickedFile.path);
+      } else if (type == "license_self") {
+        license_self_image = File(pickedFile.path);
+      }
+    } // إغلاق الـ BottomSheet بعد الاختيار
+    notifyListeners();
   }
 }

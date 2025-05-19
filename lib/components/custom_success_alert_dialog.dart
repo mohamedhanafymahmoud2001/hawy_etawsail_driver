@@ -39,6 +39,7 @@ class _CustomSuccessAlertDialogState extends State<CustomSuccessAlertDialog> {
   void showConfetti() {
     _confettiController.play();
   }
+
   LangLocal langLocal = new LangLocal();
   @override
   Widget build(BuildContext context) {
@@ -46,70 +47,70 @@ class _CustomSuccessAlertDialogState extends State<CustomSuccessAlertDialog> {
     return Consumer<Control>(builder: (context, val, child) {
       if (val.data == null) {
         return Center(
-              child: CircularProgressIndicator(),
-            );
+          child: CircularProgressIndicator(),
+        );
       } else {
         return Directionality(
           textDirection: val.direction,
           child: AlertDialog(
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24)),
-                title: Align(
-                  alignment: Alignment.topCenter,
-                  child: Image.asset(
-                    val.data['status'] == true
-                        ? "assets/images/success.png"
-                        : "assets/images/error.png",
-                    width: 60,
-                  ),
-                ),
-                titlePadding: const EdgeInsets.all(16),
-                content: SizedBox(
-                  height: 120,
-                  width: 300,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      val.data['status'] == true
-                          ? ConfettiWidget(
-                              confettiController: _confettiController,
-                              blastDirectionality: BlastDirectionality.explosive,
-                              shouldLoop: false,
-                              colors: [
-                                Colors.red,
-                                Colors.blue,
-                                Colors.green,
-                                Colors.yellow,
-                                Colors.orange
-                              ],
-                            )
-                          : SizedBox(),
-                      Text(
-                        val.data['message'].toString(),
-                        maxLines: 1,
-                        textAlign: TextAlign.center,
-                        style: AppTextStyles.style14W400(context),
-                      ),
-                      SizedBox(
-                        height: 32,
-                      ),
-                      AppButton(
-                        text:          "${langLocal.langLocal['ok']!['${val.languagebox.get("language")}']}",
-
-                        fun:
-                            //  val.data['status'] == true
-                            //     ?
-                            widget.onPressedOk
-                        // :
-                        // () {}
-                        ,
-                      )
-                    ],
-                  ),
-                ),
+            backgroundColor: Colors.white,
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+            title: Align(
+              alignment: Alignment.topCenter,
+              child: Image.asset(
+                val.data['status'] == true
+                    ? "assets/images/success.png"
+                    : "assets/images/error.png",
+                width: 60,
               ),
+            ),
+            titlePadding: const EdgeInsets.all(16),
+            content: SizedBox(
+              height: 120,
+              width: 300,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  val.data['status'] == true
+                      ? ConfettiWidget(
+                          confettiController: _confettiController,
+                          blastDirectionality: BlastDirectionality.explosive,
+                          shouldLoop: false,
+                          colors: [
+                            Colors.red,
+                            Colors.blue,
+                            Colors.green,
+                            Colors.yellow,
+                            Colors.orange
+                          ],
+                        )
+                      : SizedBox(),
+                  Text(
+                    val.data['message'].toString(),
+                    maxLines: 1,
+                    textAlign: TextAlign.center,
+                    style: AppTextStyles.style14W400(context),
+                  ),
+                  SizedBox(
+                    height: 32,
+                  ),
+                  AppButton(
+                    text:
+                        "${langLocal.langLocal['ok']!['${val.languagebox.get("language")}']}",
+                    fun:
+                        //  val.data['status'] == true
+                        //     ?
+                        widget.onPressedOk
+                    // :
+                    // () {}
+                    ,
+                  )
+                ],
+              ),
+            ),
+          ),
         );
       }
     });

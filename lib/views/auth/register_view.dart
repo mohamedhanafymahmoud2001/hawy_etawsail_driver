@@ -5,6 +5,7 @@ import 'package:hwee_tawseel_driver/components/app_alert_dialog.dart';
 import 'package:hwee_tawseel_driver/components/app_button.dart';
 import 'package:hwee_tawseel_driver/components/app_colors.dart';
 import 'package:hwee_tawseel_driver/components/app_text_styles.dart';
+import 'package:hwee_tawseel_driver/components/bottomSheetApp.dart';
 import 'package:hwee_tawseel_driver/components/generated/assets.dart';
 import 'package:hwee_tawseel_driver/prov/prov.dart';
 import 'package:hwee_tawseel_driver/views/auth/widgets/app_bar_from_auth.dart';
@@ -22,54 +23,58 @@ class RegisterView extends StatefulWidget {
 
 class _RegisterViewState extends State<RegisterView> {
   LangLocal langLocal = new LangLocal();
+  BottomSheetApp bottomSheetApp = BottomSheetApp();
 
   Widget _buildUploadCard(String title, VoidCallback fun, File? image) {
     return Consumer<Control>(builder: (context, val, child) {
-      return Container(
-        width: 260,
-        height: 160,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: AppColors.border,
+      return InkWell(
+        onTap: fun,
+        child: Container(
+          width: 260,
+          height: 160,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: AppColors.border,
+            ),
           ),
-        ),
-        margin: EdgeInsets.symmetric(vertical: 10),
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: image != null
-              ? Container(
-                  width: 260,
-                  height: 160,
-                  child: Image.file(image),
-                )
-              : Column(
-                  children: [
-                    Text(
-                      title,
-                      style: AppTextStyles.style14W400(context).copyWith(
-                        color: AppColors.border,
-                        fontFamily: 'Noto Kufi Arabic',
-                      ),
-                    ),
-                    Spacer(),
-                    Image.asset(
-                      Assets.imagesPhoto,
-                      width: 32,
-                      height: 32,
-                    ),
-                    TextButton(
-                      onPressed: fun,
-                      child: Text(
-                        "${langLocal.langLocal['insertImageHere']!['${val.languagebox.get("language")}']}",
-                        style: AppTextStyles.style12W500(context).copyWith(
-                          color: AppColors.accentColor,
+          margin: EdgeInsets.symmetric(vertical: 10),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: image != null
+                ? Container(
+                    width: 260,
+                    height: 160,
+                    child: Image.file(image),
+                  )
+                : Column(
+                    children: [
+                      Text(
+                        title,
+                        style: AppTextStyles.style14W400(context).copyWith(
+                          color: AppColors.border,
+                          fontFamily: 'Noto Kufi Arabic',
                         ),
                       ),
-                    ),
-                  ],
-                ),
+                      Spacer(),
+                      Image.asset(
+                        Assets.imagesPhoto,
+                        width: 32,
+                        height: 32,
+                      ),
+                      TextButton(
+                        onPressed: fun,
+                        child: Text(
+                          "${langLocal.langLocal['insertImageHere']!['${val.languagebox.get("language")}']}",
+                          style: AppTextStyles.style12W500(context).copyWith(
+                            color: AppColors.accentColor,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+          ),
         ),
       );
     });
@@ -128,7 +133,11 @@ class _RegisterViewState extends State<RegisterView> {
                         ),
                         child: Center(
                           child: GestureDetector(
-                            onTap: val.upload_User_image,
+                            onTap: () {
+                              // val.upload_User_image();
+
+                              bottomSheetApp.showPicker(context, "profile");
+                            },
                             child: const Icon(
                               Icons.camera_alt_outlined,
                               size: 16,
@@ -144,17 +153,22 @@ class _RegisterViewState extends State<RegisterView> {
               _buildUploadCard(
                   "${langLocal.langLocal['enterCarLicenseImage']!['${val.languagebox.get("language")}']}",
                   () {
-                val.uploadlicense_image();
+                // val.uploadlicense_image();
+                bottomSheetApp.showPicker(context, "license");
               }, val.license_image),
               _buildUploadCard(
                   "${langLocal.langLocal['enterDriverLicenseImage']!['${val.languagebox.get("language")}']}",
                   () {
-                val.uploadlicense_self_image();
+                // val.uploadlicense_self_image();
+
+                bottomSheetApp.showPicker(context, "license_self");
               }, val.license_self_image),
               _buildUploadCard(
                   "${langLocal.langLocal['enterNationalIdImage']!['${val.languagebox.get("language")}']}",
                   () {
-                val.uploadcard_image();
+                // val.uploadcard_image();
+
+                bottomSheetApp.showPicker(context, "card");
               }, val.card_image),
               SizedBox(height: 20),
               AppButton(
