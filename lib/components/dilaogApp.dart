@@ -53,9 +53,8 @@ class DialogApp {
                               child: Text(
                                 textAlign: TextAlign.center,
                                 val.data['status'] == true
-                                    ?     "${langLocal.langLocal['operationSuccess']!['${val.languagebox.get("language")}']}"
-                                    :    "${langLocal.langLocal['operationFailed']!['${val.languagebox.get("language")}']}",
-
+                                    ? "${langLocal.langLocal['operationSuccess']!['${val.languagebox.get("language")}']}"
+                                    : "${langLocal.langLocal['operationFailed']!['${val.languagebox.get("language")}']}",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold),
                               ),
@@ -83,13 +82,16 @@ class DialogApp {
                                 text:
                                     "${langLocal.langLocal['ok']!['${val.languagebox.get("language")}']}",
                                 fun: val.data['status'] == true
-                                    ? () {
-                                        // تأخير تنفيذ `func` لضمان استقرار `context`
-                                        Future.microtask(() {
-                                          if (context.mounted) {
-                                            func();
-                                          }
-                                        });
+                                    ? () async {
+                                        // أولاً اغلق الديالوغ
+                                        if (Navigator.canPop(context)) {
+                                          Navigator.of(context).pop();
+                                        }
+
+                                        // ثم نفذ الدالة بعد تأخير بسيط (لضمان أن السياق استقر)
+                                        await Future.delayed(
+                                            Duration(milliseconds: 100));
+                                        func();
                                       }
                                     : () {
                                         if (Navigator.canPop(context)) {

@@ -313,29 +313,38 @@ class MyOrderDetails extends StatelessWidget {
                             Visibility(
                               visible: confirmedOrders,
                               child: ConfirmedOrderButtons(
-                                onPressedOkFromConfirmOrder:
-                                    onPressedOkFromConfirmOrder,
-                                id: val.orderDetails['data']['order']['id'],
-                                status: val.orderDetails['data']['order']
-                                    ['status'],
-                              ),
+                                  onPressedCanselOrder: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  onPressedOkFromConfirmOrder: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  id: val.orderDetails['data']['order']['id'],
+                                  status: "finished"
+                                  //  val.orderDetails['data']['order']
+                                  // ['status'],
+                                  ),
                             ),
                             Visibility(
                               visible: reservedOrders,
                               child: ReservedOrderButtons(
-                                onPressedOk: onPressedOk,
+                                onPressedOk: () {
+                                  Navigator.of(context).pop();
+                                },
                                 id: val.orderDetails['data']['order']['id'],
                               ),
                             ),
                             Visibility(
                               visible: cancelledDoneOrders,
                               child: CancelledDoneButtons(
-                                onPressedOkFromCancelledDoneOrder:
-                                    onPressedOkFromCancelledDoneOrder,
-                                id: val.orderDetails['data']['order']['id'],
-                                status: val.orderDetails['data']['order']
-                                    ['status'],
-                              ),
+                                  onPressedOkFromCancelledDoneOrder: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  id: val.orderDetails['data']['order']['id'],
+                                  status: "finishedBack"
+                                  // val.orderDetails['data']['order']
+                                  // ['status'],
+                                  ),
                             ),
                             Visibility(
                               visible: homeOrders,

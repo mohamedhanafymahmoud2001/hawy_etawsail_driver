@@ -91,13 +91,14 @@ class _ForgetPasswordViewState extends State<ForgetPasswordView> {
                                 SizedBox(height: 12),
                                 TextButton(
                                   onPressed: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ForgetPasswordView(),
-                                      ),
-                                    );
+                                    val.PhoneReset();
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) =>
+                                    //         const ForgetPasswordView(),
+                                    //   ),
+                                    // );
                                   },
                                   child: Text(
                                       "${langLocal.langLocal['resendCode']!['${val.languagebox.get("language")}']}",

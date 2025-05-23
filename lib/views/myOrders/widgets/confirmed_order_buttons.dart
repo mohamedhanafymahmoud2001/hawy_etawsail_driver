@@ -14,11 +14,12 @@ class ConfirmedOrderButtons extends StatelessWidget {
   ConfirmedOrderButtons({
     super.key,
     required this.onPressedOkFromConfirmOrder,
+    required this.onPressedCanselOrder,
     required this.id,
     required this.status,
   });
   final Function() onPressedOkFromConfirmOrder;
-
+  final Function() onPressedCanselOrder;
   final int id;
   final String status;
   DialogApp dialogApp = new DialogApp();
@@ -30,14 +31,17 @@ class ConfirmedOrderButtons extends StatelessWidget {
         children: [
           AppButton(
             color: AppColors.greenWhite,
-            text: "${langLocal.langLocal['deliverRequest']!['${val.languagebox.get(
-                "language")}']}",
+            text:
+                "${langLocal.langLocal['deliverRequest']!['${val.languagebox.get("language")}']}",
             fun: () {
               Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => ConfirmOrderView(
-                      onPressedOkFromConfirmOrder: onPressedOkFromConfirmOrder,
+                      onPressedOkFromConfirmOrder: () {
+                        Navigator.of(context).pop();
+                        onPressedOkFromConfirmOrder();
+                      },
                       id: id,
                       status: status,
                     ),
@@ -46,8 +50,8 @@ class ConfirmedOrderButtons extends StatelessWidget {
           ),
           SizedBox(width: 8),
           AppButton(
-            text: "${langLocal.langLocal['returnRequest']!['${val.languagebox.get(
-                "language")}']}",
+            text:
+                "${langLocal.langLocal['returnRequest']!['${val.languagebox.get("language")}']}",
             fun: () {
               showDialog(
                   context: context,
@@ -76,8 +80,7 @@ class ConfirmedOrderButtons extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "${langLocal.langLocal['confirmReturnPrompt']!['${val.languagebox.get(
-                                    "language")}']}",
+                                "${langLocal.langLocal['confirmReturnPrompt']!['${val.languagebox.get("language")}']}",
                                 textAlign: TextAlign.center,
                                 style: AppTextStyles.style14W400(context),
                               ),
@@ -85,11 +88,12 @@ class ConfirmedOrderButtons extends StatelessWidget {
                                 height: 32,
                               ),
                               AppButton(
-                                text:  "${langLocal.langLocal['ok']!['${val.languagebox.get(
-                                    "language")}']}",
-
+                                text:
+                                    "${langLocal.langLocal['ok']!['${val.languagebox.get("language")}']}",
                                 fun: () {
                                   Navigator.of(context).pop();
+                                  onPressedCanselOrder();
+
                                   val.UpdateOrder(id, "back");
                                   dialogApp.checkdialog(context, () {});
                                 },

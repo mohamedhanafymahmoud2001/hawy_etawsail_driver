@@ -51,8 +51,7 @@ class ConfirmOrderView extends StatelessWidget {
                     height: 64,
                   ),
                   Text(
-                    "${langLocal.langLocal['confirmDelivery']!['${val.languagebox.get(
-                        "language")}']}",
+                    "${langLocal.langLocal['confirmDelivery']!['${val.languagebox.get("language")}']}",
                     style: AppTextStyles.style22W400(context)
                         .copyWith(fontFamily: "VEXA"),
                   ),
@@ -60,8 +59,7 @@ class ConfirmOrderView extends StatelessWidget {
                     height: 64,
                   ),
                   Text(
-                    "${langLocal.langLocal['enterOrderConfirmationCode']!['${val.languagebox.get(
-                        "language")}']}",
+                    "${langLocal.langLocal['enterOrderConfirmationCode']!['${val.languagebox.get("language")}']}",
                     style: AppTextStyles.style12W500(context),
                   ),
                   const SizedBox(
@@ -75,18 +73,24 @@ class ConfirmOrderView extends StatelessWidget {
                   ),
                   SizedBox(height: 42),
                   AppButton(
-                    text: "${langLocal.langLocal['ok']!['${val.languagebox.get(
-                        "language")}']}",
+                    text:
+                        "${langLocal.langLocal['ok']!['${val.languagebox.get("language")}']}",
                     fun: () {
                       if (formKey.currentState!.validate()) {
                         status == "finished"
-                            ? val.UpdateOrder(id, "finished")
-                            : val.UpdateOrder(id, "finishedBack");
+                            ? val.UpdateOrder(id, "$status")
+                            : val.UpdateOrder(id, "$status");
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {
                             return CustomSuccessAlertDialog(
-                              onPressedOk: onPressedOkFromConfirmOrder,
+                              onPressedOk: () {
+                                status == "finished"
+                                    ? val.GetOrderByStatus("$status")
+                                    : val.GetOrderByStatus("$status");
+                                Navigator.of(context).pop();
+                                onPressedOkFromConfirmOrder();
+                              },
                             );
                           },
                         );

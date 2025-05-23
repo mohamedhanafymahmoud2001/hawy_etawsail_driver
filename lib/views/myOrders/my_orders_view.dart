@@ -143,20 +143,10 @@ class _MyOrderState extends State<MyOrder> {
                                                     "back"
                                                 ? true
                                                 : false,
-                                        onPressedOk: () {
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                        },
-                                        onPressedOkFromConfirmOrder: () {
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                        },
-                                        onPressedOkFromCancelledDoneOrder: () {
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                          Navigator.pop(context);
-                                        },
+                                        onPressedOk: () {},
+                                        onPressedOkFromConfirmOrder: () {},
+                                        onPressedOkFromCancelledDoneOrder:
+                                            () {},
                                         onPressedHomeButtonDetails: () {},
                                       ),
                                     ),
@@ -178,17 +168,10 @@ class _MyOrderState extends State<MyOrder> {
                                       "${val.getOrderByStatus['data']['order'][i]['totalPrice']}",
                                   currency:
                                       "${val.getOrderByStatus['data']['currency']}",
-                                  onPressedOk: () {
-                                    Navigator.pop(context);
-                                  },
-                                  onPressedOkFromConfirmOrder: () {
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                  },
-                                  onPressedOkFromCancelledDoneOrder: () {
-                                    Navigator.pop(context);
-                                    Navigator.pop(context);
-                                  },
+                                  onPressedOk: () {},
+                                  onPressedOkFromConfirmOrder: () {},
+                                  onPressedCanselOrder: () {},
+                                  onPressedOkFromCancelledDoneOrder: () {},
                                   onPressedHomeButton: () {},
                                 ),
                               );

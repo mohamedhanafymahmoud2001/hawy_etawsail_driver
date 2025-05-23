@@ -65,10 +65,22 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                         children: [
                           AnimatedPositioned(
                             duration: Duration(milliseconds: 300),
-                            left: val.isLogin ? val.direction ==TextDirection.rtl ?0:120 : val.direction ==TextDirection.ltr ?0:120,
+                            left: val.isLogin
+                                ? val.direction == TextDirection.rtl
+                                    ? 0
+                                    : 120
+                                : val.direction == TextDirection.ltr
+                                    ? 0
+                                    : 120,
                             top: 0,
                             bottom: 0,
-                            right: val.isLogin ?val.direction ==TextDirection.ltr ?0:120 : val.direction ==TextDirection.rtl ?0:120,
+                            right: val.isLogin
+                                ? val.direction == TextDirection.ltr
+                                    ? 0
+                                    : 120
+                                : val.direction == TextDirection.rtl
+                                    ? 0
+                                    : 120,
                             child: Container(
                               width: 100,
                               height: 32,
@@ -122,7 +134,6 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                                   ),
                                 ),
                               ),
-
                             ],
                           ),
                         ],
@@ -153,9 +164,17 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                             itemCount: val.areas['data'].length,
                             itemBuilder: (context, i) {
                               return Padding(
-                                padding:  EdgeInsets.only(left:val.direction ==TextDirection.ltr ? i ==0? 12:0 :0
-                                ,right: val.direction ==TextDirection.rtl ? i ==0? 12:0 :0
-                                ),
+                                padding: EdgeInsets.only(
+                                    left: val.direction == TextDirection.ltr
+                                        ? i == 0
+                                            ? 12
+                                            : 0
+                                        : 0,
+                                    right: val.direction == TextDirection.rtl
+                                        ? i == 0
+                                            ? 12
+                                            : 0
+                                        : 0),
                                 child: CityButton(
                                   color: val.changeArea == i
                                       ? AppColors.orange
@@ -167,6 +186,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                                     val.ChangeArea(i);
                                   },
                                   text: "${val.areas['data'][i]['name']}",
+                                  num: "${val.areas['data'][i]['countOrder']}",
                                 ),
                               );
                             }),
@@ -220,6 +240,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                               homeOrders: true,
                               onPressedOk: () {},
                               onPressedOkFromConfirmOrder: () {},
+                              onPressedCanselOrder: () {},
                               onPressedOkFromCancelledDoneOrder: () {},
                               onPressedHomeButton: widget.onPressedHomeButton,
                             ),
@@ -241,12 +262,14 @@ class CityButton extends StatelessWidget {
   const CityButton({
     super.key,
     required this.text,
+    required this.num,
     required this.onPressed,
     this.color,
     this.textColor,
   });
 
   final String text;
+  final String num;
 
   final VoidCallback onPressed;
 
@@ -255,25 +278,53 @@ class CityButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 3),
-      child: MaterialButton(
-        elevation: 0,
-        onPressed: onPressed,
-        color: color ?? Color(0xffF6F6F6),
-        minWidth: 124,
-        height: 40,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Text(
-          text,
-          style: AppTextStyles.style10W500(context).copyWith(
-            color: textColor ?? AppColors.black,
-            fontFamily: 'Noto Kufi Arabic',
+    ColorsApp colosApp = ColorsApp();
+    return Stack(
+      children: [
+        Container(
+          margin: EdgeInsets.symmetric(horizontal: 3),
+          child: MaterialButton(
+            elevation: 0,
+            onPressed: onPressed,
+            color: color ?? Color(0xffF6F6F6),
+            minWidth: 124,
+            height: 40,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: Text(
+              text,
+              style: AppTextStyles.style10W500(context).copyWith(
+                color: textColor ?? AppColors.black,
+                fontFamily: 'Noto Kufi Arabic',
+              ),
+            ),
           ),
         ),
-      ),
+        Container(
+            height: 16,
+            padding: EdgeInsets.symmetric(horizontal: 8),
+            decoration: BoxDecoration(
+              color: colosApp.colorgreen2,
+              borderRadius: BorderRadius.circular(16),
+              boxShadow: [
+                BoxShadow(
+                  color: AppColors.black.withOpacity(0.1),
+                  blurRadius: 4,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Center(
+              child: Text(
+                "$num",
+                style: AppTextStyles.style10W500(context).copyWith(
+                  color: Colors.white,
+                  fontFamily: 'Noto Kufi Arabic',
+                ),
+              ),
+            )),
+      ],
     );
   }
 }

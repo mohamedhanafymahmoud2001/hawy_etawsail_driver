@@ -32,6 +32,7 @@ class MyOrderItem extends StatelessWidget {
     required this.onPressedOk,
     required this.onPressedOkFromConfirmOrder,
     required this.onPressedOkFromCancelledDoneOrder,
+    required this.onPressedCanselOrder,
     required this.onPressedHomeButton,
   });
 
@@ -51,6 +52,7 @@ class MyOrderItem extends StatelessWidget {
   final Function() onPressedOk;
   final Function() onPressedOkFromConfirmOrder;
   final Function() onPressedOkFromCancelledDoneOrder;
+  final Function() onPressedCanselOrder;
   final Function() onPressedHomeButton;
 
 // final Function() bottomOnTapOk;
@@ -116,8 +118,7 @@ class MyOrderItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "${langLocal.langLocal['deliveryValue']!['${val.languagebox.get(
-                        "language")}']}",
+                    "${langLocal.langLocal['deliveryValue']!['${val.languagebox.get("language")}']}",
                     style: AppTextStyles.style12W500(context),
                   ),
                   Text(
@@ -132,16 +133,16 @@ class MyOrderItem extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      // Visibility(
-                      //   visible: !cancelledDoneOrders &&
-                      //       !confirmedOrders &&
-                      //       !reservedOrders &&
-                      //       !homeOrders,
-                      //   child: Text(
-                      //     dataTo,
-                      //     style: AppTextStyles.style12W500(context),
-                      //   ),
-                      // ),
+                      Visibility(
+                        visible: !cancelledDoneOrders &&
+                            !confirmedOrders &&
+                            !reservedOrders &&
+                            !homeOrders,
+                        child: Text(
+                          dataTo,
+                          style: AppTextStyles.style12W500(context),
+                        ),
+                      ),
                       SizedBox(
                         height: 4,
                       ),
@@ -180,6 +181,7 @@ class MyOrderItem extends StatelessWidget {
                 visible: val.changeMyOrder == "receiveOrder" ? true : false,
                 child: ConfirmedOrderButtons(
                   onPressedOkFromConfirmOrder: onPressedOkFromConfirmOrder,
+                  onPressedCanselOrder: onPressedCanselOrder,
                   id: id,
                   status: "finished",
                 ),
@@ -187,7 +189,7 @@ class MyOrderItem extends StatelessWidget {
               Visibility(
                 visible: val.changeMyOrder == "bookOrder" ? true : false,
                 child: ReservedOrderButtons(
-                  onPressedOk: onPressedOk,
+                  onPressedOk: () {},
                   id: id,
                 ),
               ),

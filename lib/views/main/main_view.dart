@@ -281,7 +281,7 @@ class MainViewState extends State<MainView> {
                             "${langLocal.langLocal['requests']!['${val.languagebox.get("language")}']}",
                         onPressed: (value) {
                           animateToPage(value);
-                          val.OrdersCreated();
+                          val.Areas();
                         },
                         icon: Assets.imagesBox2,
                         currentIndex: _currentIndex,

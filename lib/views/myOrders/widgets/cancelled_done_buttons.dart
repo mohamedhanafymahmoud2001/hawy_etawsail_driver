@@ -7,10 +7,11 @@ import '../../../constant.dart';
 import '../../../constant.dart' as val;
 
 class CancelledDoneButtons extends StatelessWidget {
-  const CancelledDoneButtons({super.key,
-    required this.onPressedOkFromCancelledDoneOrder,
-    required this.id,
-    required this.status});
+  const CancelledDoneButtons(
+      {super.key,
+      required this.onPressedOkFromCancelledDoneOrder,
+      required this.id,
+      required this.status});
 
   final Function() onPressedOkFromCancelledDoneOrder;
   final int id;
@@ -19,30 +20,29 @@ class CancelledDoneButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
         AppButton(
-        color: AppColors.greenWhite,
-        text: "${langLocal.langLocal['confirmReturnRequest']!['${val.languagebox.get(
-            "language")}']}",
+          color: AppColors.greenWhite,
+          text:
+              "${langLocal.langLocal['confirmReturnRequest']!['${val.languagebox.get("language")}']}",
+          fun: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ConfirmOrderView(
+                    onPressedOkFromConfirmOrder: () {
+                      Navigator.of(context).pop();
 
-        fun: ()
-    {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) =>
-                ConfirmOrderView(
-                  onPressedOkFromConfirmOrder:
-                  onPressedOkFromCancelledDoneOrder,
-                  id: id,
-                  status: status,
-                ),
-          ));
-    },)
-    ,
-    ]
-    ,
+                      onPressedOkFromCancelledDoneOrder();
+                    },
+                    id: id,
+                    status: status,
+                  ),
+                ));
+          },
+        ),
+      ],
     );
   }
 }

@@ -27,15 +27,18 @@ class ReservedOrderButtons extends StatelessWidget {
         children: [
           AppButton(
             color: AppColors.greenWhite,
-            text: "${langLocal.langLocal['confirmOrder']!['${val.languagebox.get(
-                "language")}']}",
+            text:
+                "${langLocal.langLocal['confirmOrder']!['${val.languagebox.get("language")}']}",
             fun: () {
               val.UpdateOrder(id, "receiveOrder");
               showDialog(
                 context: context,
                 builder: (BuildContext context) {
                   return CustomSuccessAlertDialog(
-                    onPressedOk: onPressedOk,
+                    onPressedOk: () {
+                      Navigator.of(context).pop();
+                      onPressedOk();
+                    },
                   );
                 },
               );
@@ -44,8 +47,8 @@ class ReservedOrderButtons extends StatelessWidget {
           SizedBox(width: 8),
           AppButton(
             color: AppColors.greenDark,
-            text:"${langLocal.langLocal['cancelOrderBooking']!['${val.languagebox.get(
-                "language")}']}",
+            text:
+                "${langLocal.langLocal['cancelOrderBooking']!['${val.languagebox.get("language")}']}",
             fun: () {
               showDialog(
                   context: context,
@@ -74,8 +77,7 @@ class ReservedOrderButtons extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
-                                "${langLocal.langLocal['confirmCancelOrderBooking']!['${val.languagebox.get(
-                                    "language")}']}",
+                                "${langLocal.langLocal['confirmCancelOrderBooking']!['${val.languagebox.get("language")}']}",
                                 textAlign: TextAlign.center,
                                 style: AppTextStyles.style14W400(context),
                               ),
@@ -83,14 +85,11 @@ class ReservedOrderButtons extends StatelessWidget {
                                 height: 32,
                               ),
                               AppButton(
-                                text: "${langLocal.langLocal['ok']!['${val.languagebox.get(
-                                    "language")}']}",
+                                text:
+                                    "${langLocal.langLocal['ok']!['${val.languagebox.get("language")}']}",
                                 fun: () {
                                   Navigator.of(context).pop();
                                   val.CancelOrder(id);
-                                  dialogApp.checkdialog(context, () {
-                                    // Navigator.of(context).pop();
-                                  });
                                 },
                               )
                             ],
