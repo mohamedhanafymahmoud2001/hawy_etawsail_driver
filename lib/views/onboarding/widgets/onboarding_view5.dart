@@ -120,7 +120,7 @@ class _OnboardingView5 extends State<OnboardingView5> {
                                         MainAxisAlignment.spaceBetween,
                                     children: [
                                       Image.network(
-                                        "${val.api.ip}/${val.countries['data'][i]['image']}",
+                                        "${val.countries['data'][i]['image']}",
                                         width: 32,
                                         height: 23,
                                       ),

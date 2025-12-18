@@ -336,6 +336,10 @@ class LangLocal {
       "en": "Logout",
       "ar": "تسجيل الخروج",
     },
+    "deleteaccount": {
+      "en": "Delete Account",
+      "ar": "حذف الحساب",
+    },
     "transaction_type_label": {
       "en": "Transaction Type:",
       "ar": "نوع المعاملة :"

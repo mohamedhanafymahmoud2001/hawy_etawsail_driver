@@ -68,7 +68,7 @@ class _EditDataView extends State<EditDataView> {
                                 width: 260,
                                 height: 125,
                                 child: ImageView(
-                                    image: "${val.api.ip}/$imagelink")),
+                                    image: "$imagelink")),
                         TextButton(
                           onPressed: fun,
                           child: Text(
@@ -146,10 +146,10 @@ class _EditDataView extends State<EditDataView> {
                                                           100),
                                                   child: ImageView(
                                                       image:
-                                                          "${val.api.ip}/${val.profile['data']['image']}")
+                                                          "${val.profile['data']['image']}")
 
                                                   //  Image.network(
-                                                  //   "${val.api.ip}/${val.profile['data']['image']}",
+                                                  //   "${val.profile['data']['image']}",
                                                   //   fit: BoxFit.cover,
                                                   // )
 

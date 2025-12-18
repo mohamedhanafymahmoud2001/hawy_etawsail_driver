@@ -46,7 +46,7 @@ class MyOrderDetails extends StatelessWidget {
         child: Scaffold(
           backgroundColor: AppColors.white,
           appBar: customAppBar(context, val.namebox.get("name"),
-              "${val.api.ip}/${val.imagebox.get('image')}"),
+              "${val.imagebox.get('image')}"),
           body: val.orderDetails == null
               ? Center(
                   child: CircularProgressIndicator(),
@@ -132,7 +132,7 @@ class MyOrderDetails extends StatelessWidget {
                             // ),
                             // ImageView(
                             //   image:
-                            //       "${val.api.ip}/${val.orderDetails['data']['order']['image']}",
+                            //       "${val.orderDetails['data']['order']['image']}",
                             // ),
                             SizedBox(height: 8),
                             MyOrderDetailsItem(

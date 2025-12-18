@@ -10,7 +10,6 @@ import 'package:hwee_tawseel_driver/views/auth/forget_password_view.dart';
 import 'package:hwee_tawseel_driver/views/auth/widgets/app_bar_from_auth.dart';
 import 'package:hwee_tawseel_driver/views/auth/widgets/pinput.dart';
 import 'package:provider/provider.dart';
-
 import '../../../prov/langlocal.dart';
 
 class VerfiCode extends StatefulWidget {

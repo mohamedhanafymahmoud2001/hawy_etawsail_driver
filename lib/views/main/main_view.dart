@@ -112,7 +112,7 @@ class MainViewState extends State<MainView> {
                             borderRadius: BorderRadius.circular(50),
                             child: ImageView(
                                 image:
-                                    "${val.api.ip}/${val.imagebox.get('image')}"),
+                                    "${val.imagebox.get('image')}"),
                           )
 
                           //Image.asset(Assets.imagesTest1),

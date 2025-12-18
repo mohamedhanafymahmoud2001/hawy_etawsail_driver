@@ -11,28 +11,44 @@ class MyLocation extends StatelessWidget {
     // DialogApp dialogApp = new DialogApp();
     // BottomSheetApp bottomSheetApp = new BottomSheetApp();
     return Consumer<Control>(builder: (context, val, child) {
-      return val.kGooglePlexUser.target.latitude == 0.0
-          ? Container(
-              height: double.infinity,
-              width: double.infinity,
-              color: Colors.white,
-              child: Center(child: CircularProgressIndicator()))
-          : GoogleMap(
-              mapType: MapType.hybrid,
-              markers: val.mymarker,
-              initialCameraPosition: val.kGooglePlexUser,
-              onTap: (argument) {
-                val.pinMarcker(argument.latitude, argument.longitude);
-                val.long = argument.longitude;
-                val.lat = argument.latitude;
-                print("new location${val.lat}///${argument.latitude}");
+      return Column(children: [
+        Container(
+          height: 60,
+          width: double.infinity,
+          color: Colors.white,
+          child: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
               },
-              onMapCreated: (GoogleMapController controller) {
-                // val.controller.complete(controller);
-                val.gmc = controller;
-                print(" loca${val.gmc}");
-              },
-            );
+              icon: Icon(Icons.keyboard_arrow_left,color: Colors.black,)),
+        ),
+        val.kGooglePlexUser.target.latitude == 0.0
+            ? Expanded(
+              child: Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  color: Colors.white,
+                  child: Center(child: CircularProgressIndicator())),
+            )
+            : Expanded(
+              child: GoogleMap(
+                  mapType: MapType.hybrid,
+                  markers: val.mymarker,
+                  initialCameraPosition: val.kGooglePlexUser,
+                  onTap: (argument) {
+                    val.pinMarcker(argument.latitude, argument.longitude);
+                    val.long = argument.longitude;
+                    val.lat = argument.latitude;
+                    print("new location${val.lat}///${argument.latitude}");
+                  },
+                  onMapCreated: (GoogleMapController controller) {
+                    // val.controller.complete(controller);
+                    val.gmc = controller;
+                    print(" loca${val.gmc}");
+                  },
+                ),
+            ),
+      ]);
     });
   }
 }

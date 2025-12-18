@@ -18,16 +18,44 @@ class Control extends ChangeNotifier {
   var fbm = FirebaseMessaging.instance;
   String tokendevice = '';
   var data = null;
-  GetTokenDevice() async {
-    await fbm.requestPermission();
-    fbm.getToken().then((value) {
-      tokendevice = value!;
-      print("token== $value");
-      print("token== $value");
-      print("token== $value");
-    });
-    notifyListeners();
+  // GetTokenDevice() async {
+  //   await fbm.requestPermission();
+  //   fbm.getToken().then((value) {
+  //     tokendevice = value!;
+  //     print("token== $value");
+  //     print("token== $value");
+  //     print("token== $value");
+  //   });
+  //   notifyListeners();
+  // }
+  Future<void> GetTokenDevice() async {
+  // اطلب صلاحيات الإشعارات
+  await fbm.requestPermission();
+
+  // استنى الـ APNs Token الأول
+  String? apnsToken;
+  do {
+    apnsToken = await fbm.getAPNSToken();
+    if (apnsToken == null) {
+      print("⏳ Waiting for APNs token...");
+      await Future.delayed(const Duration(seconds: 2));
+    }
+  } while (apnsToken == null);
+
+  print("📱 APNs Token ready: $apnsToken");
+
+  // بعد ما يجهز، خد الـ FCM Token
+  String? fcmToken = await fbm.getToken();
+  if (fcmToken != null) {
+    tokendevice = fcmToken;
+    print("🔥 FCM Token: $fcmToken");
+  } else {
+    print("⚠️ No FCM token available yet");
   }
+
+  notifyListeners();
+}
+
 
   String lang = "";
   late Box languagebox = Hive.box("language");

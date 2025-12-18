@@ -29,7 +29,7 @@ class ConfirmOrderView extends StatelessWidget {
       return Scaffold(
         backgroundColor: AppColors.white,
         appBar: customAppBar(context, val.namebox.get("name"),
-            "${val.api.ip}/${val.imagebox.get('image')}"),
+            "${val.imagebox.get('image')}"),
         body: Stack(
           alignment: Alignment.topCenter,
           children: [

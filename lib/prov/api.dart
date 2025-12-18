@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 
 class Api {
   String ip =
-      "https://mangamediaa.com/tawsel-hawe/public"; //https://mangamediaa.com/tawsel-hawe/public "http://192.168.1.3/laravel/tawsel-hawe/public";
+      "https://hawytawsel.shop/hawe-tawsel/public"; //https://mangamediaa.com/tawsel-hawe/public "http://192.168.1.3/laravel/tawsel-hawe/public";
   late Box languagebox = Hive.box("language");
   late Box tokenbox = Hive.box("token");
   TextEditingController fname = TextEditingController();

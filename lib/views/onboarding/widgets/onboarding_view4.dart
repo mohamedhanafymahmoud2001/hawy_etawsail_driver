@@ -52,27 +52,29 @@ class OnboardingView4 extends StatelessWidget {
                 ),
               ),
             ),
-            Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height / 2,
-                  width: MediaQuery.of(context).size.width,
-                  child: Align(
-                    alignment: Alignment.centerLeft,
-                    child: Image.asset(
-                      Assets.imagesOnboardingBackground2,
+            Expanded(
+              child: Stack(
+                alignment: Alignment.topCenter,
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height / 2,
+                    width: MediaQuery.of(context).size.width,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Image.asset(
+                        Assets.imagesOnboardingBackground2,
+                      ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  width: 330,
-                  child: Image.asset(
-                    Assets.imagesOnboarding4,
-                    fit: BoxFit.fill,
+                  SizedBox(
+                    width: 330,
+                    child: Image.asset(
+                      Assets.imagesOnboarding4,
+                      fit: BoxFit.fill,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
             const SizedBox(
               height: 32,
@@ -135,7 +137,10 @@ class OnboardingView4 extends StatelessWidget {
                 ),
               ),
             ),
-            Spacer(),
+            // Spacer(),
+            SizedBox(
+              height: 22,
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0),
               child: Row(

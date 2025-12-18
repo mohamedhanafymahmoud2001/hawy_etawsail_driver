@@ -59,7 +59,7 @@ class ProfileView extends StatelessWidget {
                                               BorderRadius.circular(100),
                                           child: ImageView(
                                               image:
-                                                  "${val.api.ip}/${val.profile['data']['image']}"),
+                                                  "${val.profile['data']['image']}"),
                                         )),
                                     Positioned(
                                       bottom: 4,
@@ -262,6 +262,47 @@ class ProfileView extends StatelessWidget {
                                   children: [
                                     Text(
                                       "${langLocal.langLocal['logout']!['${val.languagebox.get(
+                                          "language")}']}" ,
+                                      style: AppTextStyles.style12W500(context)
+                                          .copyWith(
+                                        color: AppColors.white,
+                                      ),
+                                    ),
+                                    SvgPicture.asset(Assets.imagesSignOut),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 20,),
+                              MaterialButton(
+                                onPressed: () {
+                                  val.LogOut();
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          CustomSuccessAlertDialog(
+                                            onPressedOk: () {
+                                              Navigator.of(context)
+                                                  .pushAndRemoveUntil(
+                                                MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        AuthView()),
+                                                (Route<dynamic> route) => false,
+                                              );
+                                            },
+                                          ));
+                                },
+                                color: AppColors.greyDarker,
+                                padding: EdgeInsets.symmetric(horizontal: 24),
+                                height: 42,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(120),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  spacing: 8,
+                                  children: [
+                                    Text(
+                                      "${langLocal.langLocal['deleteaccount']!['${val.languagebox.get(
                                           "language")}']}" ,
                                       style: AppTextStyles.style12W500(context)
                                           .copyWith(
